@@ -5,13 +5,26 @@
 number <- readline(prompt = "Please input a three-digit number: ")
 
 
-
 #Check if the user input is numeric and an integer. If not, print an error message and quit.
-if (is.numeric((number)) &
-    (as.numeric(number)) %% 1 == 0) {
-  print("Answer is valid")
+if (nchar(number) != 3 |
+    as.numeric(number) %% 1 != 0) {
+  print("Number is invalid. Please restart the program")
+  q()
+
 } else {
-  print("Number is invalid")
+#Split number into individual digits.
+  digits <-strsplit(number,"")[[1]]
+  digits <- as.integer(digits) #Convert digits vector into integers
+
+# Add the sum of the cubes of each digit
+  if (sum(digits^3) == number) {
+    print("This is a narcissistic number")
+  } else {
+    print("This is not a narcissistic number")
+  }
+
+
+
 }
 
 
